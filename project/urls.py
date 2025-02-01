@@ -1,22 +1,32 @@
-"""
-URL configuration for project project.
+from typing import List, Union
 
-The `urlpatterns` list routes URLs to api. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function api
-    1. Add an import:  from my_app import api
-    2. Add a URL to urlpatterns:  path('', api.home, name='home')
-Class-based api
-    1. Add an import:  from other_app.api import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-# from django.contrib import admin
-from django.urls import path
+from django.conf import settings
+from django.conf.urls import include
+from django.contrib import admin
+from django.urls import path, reverse_lazy
+from django.urls.resolvers import URLPattern, URLResolver
+from django.views.generic import RedirectView
 
-urlpatterns = [
-    #    path('admin/', admin.site.urls),
+from apps.helpers.static import serve
+
+urlpatterns: List[Union[URLPattern, URLResolver]] = [
+    path("", RedirectView.as_view(url=reverse_lazy("admin:index"))),
+    path("admin/", admin.site.urls),
+    path("api/", include(("api_urls", None))),
 ]
+
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.views import debug
+
+    urlpatterns.append(path("", debug.default_urlconf))
+    urlpatterns.append(path("api-auth/", include("rest_framework.urls")))
+    urlpatterns.extend(static(settings.MEDIA_URL, view=serve, document_root=settings.MEDIA_ROOT))
+
+
+if settings.SILK_PROFILING:
+    urlpatterns += [
+        path(f"{settings.SILK_PANEL_PREFIX}/", include("silk.urls", namespace="silk")),
+    ]
+

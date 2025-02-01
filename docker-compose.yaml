@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:13-alpine
+    container_name: task_management_db
+    restart: always
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./docker/data/db/data:/var/lib/postgresql/data
+      - ./docker/data/db/backup:/backup
+      - ./etc/init-user.sql:/docker-entrypoint-initdb.d/init-user.sql
+    ports:
+      - "9432:5432"
