@@ -29,4 +29,3 @@ if settings.SILK_PROFILING:
     urlpatterns += [
         path(f"{settings.SILK_PANEL_PREFIX}/", include("silk.urls", namespace="silk")),
     ]
-

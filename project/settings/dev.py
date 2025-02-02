@@ -10,9 +10,7 @@ MIDDLEWARE.append(
     "livereload.middleware.LiveReloadScript",
 )
 
-INSTALLED_APPS += (
-    "livereload",
-)
+INSTALLED_APPS += ("livereload",)
 INTERNAL_IPS = [
     "127.0.0.1",
     "localhost",
