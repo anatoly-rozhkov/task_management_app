@@ -9,6 +9,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_filter = ("name", "created_at")
     search_fields = ("id", "name")
 
+
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "created_at")

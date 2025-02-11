@@ -13,5 +13,6 @@ def import_from_settings(attr, *args):
     except AttributeError:
         raise ImproperlyConfigured("Setting {0} not found".format(attr))
 
+
 def get_settings(attr, *args):
     return import_from_settings(attr, *args)
