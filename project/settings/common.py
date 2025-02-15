@@ -1,4 +1,6 @@
 from pathlib import Path
+from typing import Dict, Any
+
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -138,6 +140,13 @@ REST_FRAMEWORK = {
     "OVERIDE_THROTTLE_RATES": {},
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
+}
+
+SPECTACULAR_SETTINGS: Dict[str, Any] = {
+    "TITLE": "Task Management Backend API Docs",
+    "VERSION": "0.1.0",
+    "SCHEMA_PATH_PREFIX": r"/api/",
+    "SWAGGER_UI_SETTINGS": {"deepLinking": True, "displayRequestDuration": True, "docExpansion": None},
 }
 
 

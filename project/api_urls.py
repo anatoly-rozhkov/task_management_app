@@ -12,7 +12,7 @@ router.registry.extend(projects_router.registry)
 
 class TMSpectacularAPIView(SpectacularAPIView):
     patterns = [
-        path("", include((router.urls, "api-root")), name="api-root"),
+        path("api/", include((router.urls, "api-root")), name="api-root"),
         # path("api/auth/obtain/", TokenObtainPairView.as_view(), name="auth_obtain_pair"),
         # path("api/auth/verify/", TokenVerifyView.as_view(), name="auth_verify"),
     ]

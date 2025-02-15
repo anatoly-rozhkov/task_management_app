@@ -1,1 +1,2 @@
 from .project_serializers import ProjectSerializer, ProjectListSerializer
+from .task_serializers import TaskListSerializer, TaskSerializer
