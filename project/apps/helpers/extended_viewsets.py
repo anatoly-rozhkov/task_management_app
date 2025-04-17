@@ -131,6 +131,27 @@ class ReadCreateExtendedModelViewSet(
 
     pass
 
+class FullExtendedModelViewSet(ReadCreateExtendedModelViewSet, mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+    """
+        Examples:
+    class MyModelViewSet(FullExtendedModelViewSet):
+        serializer_class_map = {
+            'list': ListMyModelSerializer,
+            'retrieve': RetrieveMyModelSerializer,
+            'update': UpdateMyModelSerializer,
+            'create': CreateMyModelSerializer,
+            'destroy': DestroyMyModelSerializer,
+        }
+        permission_classes_map = {
+            'list': AllowAny,
+            'retrieve': IsAuthenticated,
+            'update': (IsOwner | IsAdminUser),
+            'create': (IsOwner | IsAdminUser),
+            'destroy': (IsOwner | IsAdminUser),
+        }
+    """
+
+    pass
 
 class ReadCreateUpdateExtendedModelViewSet(ReadCreateExtendedModelViewSet, mixins.UpdateModelMixin):
     """

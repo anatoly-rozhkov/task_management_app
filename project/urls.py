@@ -16,6 +16,11 @@ urlpatterns: List[Union[URLPattern, URLResolver]] = [
 ]
 
 
+if settings.SILK_PROFILING:
+    urlpatterns += [
+        path(f"{settings.SILK_PANEL_PREFIX}/", include("silk.urls", namespace="silk")),
+    ]
+
 if settings.DEBUG:
     from django.conf.urls.static import static
     from django.views import debug
@@ -23,9 +28,3 @@ if settings.DEBUG:
     urlpatterns.append(path("", debug.default_urlconf))
     urlpatterns.append(path("api-auth/", include("rest_framework.urls")))
     urlpatterns.extend(static(settings.MEDIA_URL, view=serve, document_root=settings.MEDIA_ROOT))
-
-
-if settings.SILK_PROFILING:
-    urlpatterns += [
-        path(f"{settings.SILK_PANEL_PREFIX}/", include("silk.urls", namespace="silk")),
-    ]

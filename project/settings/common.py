@@ -10,7 +10,7 @@ env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     DEBUG=(bool, False),
     SECRET_KEY=(str, ""),
-    SILK_PROFILING=(bool, False),
+    SILK_PROFILING=(bool, True),
 )
 
 environ.Env.read_env(BASE_DIR / "../.env")
@@ -48,6 +48,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "drf_spectacular",
     "rest_framework",
+    "corsheaders",
     "silk",
 ]
 
@@ -63,9 +64,14 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = "urls"
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173",]
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {
