@@ -131,6 +131,7 @@ class ReadCreateExtendedModelViewSet(
 
     pass
 
+
 class FullExtendedModelViewSet(ReadCreateExtendedModelViewSet, mixins.UpdateModelMixin, mixins.DestroyModelMixin):
     """
         Examples:
@@ -152,6 +153,7 @@ class FullExtendedModelViewSet(ReadCreateExtendedModelViewSet, mixins.UpdateMode
     """
 
     pass
+
 
 class ReadCreateUpdateExtendedModelViewSet(ReadCreateExtendedModelViewSet, mixins.UpdateModelMixin):
     """

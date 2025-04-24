@@ -1,6 +1,7 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from apps.helpers.extended_viewsets import FullExtendedModelViewSet
+from apps.projects.api.filters import TaskFilter
 
 from apps.projects.api.serializers import TaskSerializer, TaskListSerializer
 from apps.projects.models import Task
@@ -17,6 +18,7 @@ from apps.projects.models import Task
 class TaskViewSet(FullExtendedModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    filterset_class = TaskFilter
     serializer_class_map = {
         "list": TaskListSerializer,
         "retrieve": TaskListSerializer,

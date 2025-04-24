@@ -42,11 +42,10 @@ class ProjectViewSet(FullExtendedModelViewSet):
     #     "partial_update": (IsSuperUser | IsPartnerOwnerRole | IsPartnerMarketingSpecialistRole),
     # }
 
-    @action(methods=["get"], detail=True, url_path="get-tasks")
-    def get_tasks(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        project = self.get_object()
-        queryset = project.tasks.all()
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response({"results": serializer.data})
-
+    # @action(methods=["get"], detail=True, url_path="get-tasks")
+    # def get_tasks(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+    #     project = self.get_object()
+    #     queryset = project.tasks.all()
+    #
+    #     serializer = self.get_serializer(queryset, many=True)
+    #     return Response({"results": serializer.data})
