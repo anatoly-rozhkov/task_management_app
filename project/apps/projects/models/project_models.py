@@ -7,6 +7,7 @@ User = get_user_model()
 
 
 class Project(UUIDModel, Named, CreatedModel):
+    user = models.ForeignKey(User, verbose_name="User", related_name="projects", on_delete=models.CASCADE, null=True)
     description = models.TextField("Description", max_length=600)
     due_date = models.DateField("Due date")
 

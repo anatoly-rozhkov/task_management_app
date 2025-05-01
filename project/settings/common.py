@@ -53,9 +53,14 @@ THIRD_PARTY_APPS = [
     "silk",
 ]
 
-LOCAL_APPS = ["apps.projects"]
+LOCAL_APPS = ["apps.projects", "apps.accounts"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+AUTH_USER_MODEL = "accounts.User"
+LOGIN_URL = "/admin/"
+LOGIN_REDIRECT_URL = "/admin/"
+LOGOUT_REDIRECT_URL = "/admin/"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

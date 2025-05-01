@@ -1,5 +1,7 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from rest_framework.permissions import IsAuthenticated
 
+from apps.accounts.api.permissions import IsSuperUser
 from apps.helpers.extended_viewsets import FullExtendedModelViewSet
 from apps.projects.api.filters import TaskFilter
 
@@ -25,4 +27,13 @@ class TaskViewSet(FullExtendedModelViewSet):
         "create": TaskSerializer,
         "update": TaskSerializer,
         "partial_update": TaskSerializer,
+    }
+    permission_classes = (IsSuperUser,)
+    permission_classes_map = {
+        "list": IsAuthenticated,
+        "retrieve": IsAuthenticated,
+        "create": IsAuthenticated,
+        "update": IsAuthenticated,
+        "partial_update": IsAuthenticated,
+        "destroy": IsAuthenticated,
     }

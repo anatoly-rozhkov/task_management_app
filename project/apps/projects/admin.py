@@ -5,7 +5,7 @@ from apps.projects.models import Project, Task
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "created_at")
+    list_display = ("id", "name", "created_at", "user")
     list_filter = ("name", "created_at")
     search_fields = ("id", "name")
 
