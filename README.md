@@ -28,4 +28,4 @@ http://0.0.0.0:8080/api/schema/tm/swagger/
  - IMPORTANT: start backend part before frontend part
 
 ## Frontend 
-- https://github.com/anatoly-rozhkov/Project-Management-App
+https://github.com/anatoly-rozhkov/Project-Management-App
