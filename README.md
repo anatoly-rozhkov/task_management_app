@@ -22,6 +22,15 @@ This is the backend API for the Task Management application, built with Django.
 3. Access the API documentation (Swagger UI) at:
 http://0.0.0.0:8080/api/schema/tm/swagger/
 
+4, Access admin panel at:
+http://localhost:8080/admin/
+
+Creds:
+    - Username: admin@admin.com
+    - Password: string
+
+
+
 ## Notes
  - Make sure to configure your .env file with the correct settings before running.
  - The backend runs on port 8080 by default.
