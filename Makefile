@@ -7,4 +7,4 @@ static:
 format:
 	black --config black.toml .
 superuser:
-	python project/manage.py create_superuserpassword
+	python project/manage.py create_superuser
