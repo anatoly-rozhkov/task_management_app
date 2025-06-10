@@ -6,8 +6,34 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
-      - ./docker/data/db/data:/var/lib/postgresql/data
-      - ./docker/data/db/backup:/backup
+      - ./data:/var/lib/postgresql/data
       - ./etc/init-user.sql:/docker-entrypoint-initdb.d/init-user.sql
     ports:
       - "9432:5432"
+    networks:
+      - tm_network
+
+  tm_backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tm_backend
+    container_name: tm_backend
+    env_file: .env
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ./project:/app/src
+    networks:
+      - tm_network
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "poetry run python manage.py migrate &&
+             poetry run python manage.py runserver 0.0.0.0:8080"
+
+networks:
+  tm_network:
+    external: false
+    name: tm_network

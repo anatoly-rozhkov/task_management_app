@@ -210,7 +210,7 @@ if SILK_PROFILING:
 
 JAZZMIN_SETTINGS = {
     "site_brand": "Project Management",
-    "site_logo": "images/logo.png",
+    "site_logo": "images/icon.png",
     "copyright": "Anatoly Rozhkov",
     "changeform_format": "collapsible",
 }
